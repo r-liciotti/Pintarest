@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titolo:</strong>
+  <%= @pin.titolo %>
+</p>
+
+<p>
+  <strong>Descrizione:</strong>
+  <%= @pin.descrizione %>
+</p>
+
+<%= link_to 'Edit', edit_pin_path(@pin) %> |
+<%= link_to 'Back', pins_path %>
