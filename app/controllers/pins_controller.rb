@@ -1,5 +1,7 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_user, only: [:edit, :destroy, :update]
 
   # GET /pins
   # GET /pins.json
@@ -13,6 +15,7 @@ class PinsController < ApplicationController
   end
 
   # GET /pins/new
+  # Pagina submit
   def new
     @pin = current_user.pins.build
   end
@@ -23,6 +26,7 @@ class PinsController < ApplicationController
 
   # POST /pins
   # POST /pins.json
+  # Crea il contenuto nel db
   def create
 
     @pin = current_user.pins.build(pin_params)
@@ -70,5 +74,13 @@ class PinsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
       params.require(:pin).permit(:titolo, :descrizione)
+    end
+
+    def check_user
+
+      if current_user != @pin.user
+              redirect_to root_url, alert: "Scusa ma non hai accesso a queta pagina"
+      end
+
     end
 end
