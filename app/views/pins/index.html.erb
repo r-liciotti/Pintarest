@@ -37,15 +37,13 @@
 </div>
 <br>
 
-<!-- Pulsante per nuovo Pin -->
-<span class="large material-icons">
-<%= link_to 'mode_edit', new_pin_path, class: "btn-floating btn-large red" %>
 
-</span>
+<!-- Pulsante per nuovo Pin -->
 <div class="fixed-action-btn horizontal">
 
-    <a class="btn-floating btn-large red">
+    <%= link_to new_pin_path,class: "btn-floating btn-large red" do%>
       <i class="large material-icons">mode_edit</i>
+    <%end%>
     </a>
     <ul>
       <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
