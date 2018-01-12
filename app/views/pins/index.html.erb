@@ -1,34 +1,55 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Pins</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User Id</th>
-      <th>Titolo</th>
-      <th>Descrizione</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+  <div class="row">
     <% @pins.each do |pin| %>
-      <tr>
+    <div class="col s3">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <%= image_tag pin.cover.url(), class: "activator" %>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">User:
+            <%= pin.user.name if pin.user %></span>
+          <span class="card-title activator grey-text text-darken-4"><%= pin.titolo %>
+            <i class="material-icons right">more_vert</i>
+          </span>
+          <p><%= pin.descrizione %></p>
+        </div>
+        <!-- Setting (3 Puntini verticali) -->
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">
+            <i class="material-icons right">close</i>
+          </span>
+          <p><%= link_to 'Show', pin %></p>
+          <% if pin.user == current_user %>
+            <p><%= link_to 'Edit', edit_pin_path(pin) %></p>
+            <p><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
 
-        <td><%= pin.user.name if pin.user%></td></td>
-        <td><%= pin.titolo %></td>
-        <td><%= pin.descrizione %></td>
-        <td><%= link_to 'Show', pin %></td>
-        <% if pin.user == current_user %>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
 
+  </div>
+</div>
 <br>
 
-<%= link_to 'New Pin', new_pin_path %>
+<span class="large material-icons">
+<%= link_to 'mode_edit', new_pin_path, class: "btn-floating btn-large red" %>
+
+</span>
+<div class="fixed-action-btn horizontal">
+
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>

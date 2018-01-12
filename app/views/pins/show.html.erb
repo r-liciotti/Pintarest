@@ -10,6 +10,9 @@
   <%= @pin.descrizione %>
 </p>
 
+<%= image_tag @pin.cover.url(:medium) %>
+
+
 <% if @pin.user == current_user %>
     <%= link_to 'Edit', edit_pin_path(@pin) %> |
 <% end %>

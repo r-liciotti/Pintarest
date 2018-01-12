@@ -1,4 +1,4 @@
-<%= form_with(model: pin, local: true) do |form| %>
+<%= form_with(model: pin, local: true, html: { multipart: true }) do |form| %>
   <% if pin.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(pin.errors.count, "error") %> prohibited this pin from being saved:</h2>
@@ -19,6 +19,11 @@
   <div class="field">
     <%= form.label :descrizione %>
     <%= form.text_area :descrizione, id: :pin_descrizione %>
+  </div>
+
+  <div class="field">
+      <%= form.label :cover %>
+      <%= form.file_field :cover%>
   </div>
 
   <div class="actions">
