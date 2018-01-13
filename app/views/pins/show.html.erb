@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Titolo:</strong>
-  <%= @pin.titolo %>
-</p>
+<div class="row">
+  <div class="col s12 m5 offset-m3">
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag @pin.cover.url(:medium) %>
+        <span class="card-title"><h6>Pubblicato da:</h6><h5><%= @pin.user.email %></h5></span>
+      </div>
+      <div class="card-content">
+        <h5><%= @pin.titolo %></h5>
 
-<p>
-  <strong>Descrizione:</strong>
-  <%= @pin.descrizione %>
-</p>
-
-<%= image_tag @pin.cover.url(:medium) %>
-
-
-<% if @pin.user == current_user %>
-    <%= link_to 'Edit', edit_pin_path(@pin) %> |
-<% end %>
-<%= link_to 'Back', pins_path %>
+        <p><%= @pin.descrizione %></p>
+      </div>
+      <div class="card-action">
+        <% if @pin.user == current_user %>
+          <%= link_to 'Edit', edit_pin_path(@pin) %>
+        <% end %>
+        <%= link_to 'Indietro', pins_path %>
+      </div>
+    </div>
+  </div>
+</div>

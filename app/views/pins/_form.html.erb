@@ -1,32 +1,52 @@
-<%= form_with(model: pin, local: true, html: { multipart: true }) do |form| %>
-  <% if pin.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(pin.errors.count, "error") %> prohibited this pin from being saved:</h2>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m5 offset-m3">
+      <h3 class="center">Nuovo Pin</h3>
 
-      <ul>
-      <% pin.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <%= form_with(model: pin, local: true, html: { multipart: true }) do |form| %>
+      <% if pin.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(pin.errors.count, "error") %>
+            prohibited this pin from being saved:</h2>
+
+          <ul>
+            <% pin.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+
+      <div class="field">
+        <%= form.label :titolo %>
+        <%= form.text_field :titolo, id: :pin_titolo %>
+      </div>
+
+      <div class="field">
+        <%= form.label :descrizione %>
+        <%= form.text_area :descrizione, id: :pin_descrizione %>
+      </div>
+
+      <div class="file-field input-field">
+      <div class="btn">
+        <span>Cover</span>
+         <%= form.file_field :cover%>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :titolo %>
-    <%= form.text_field :titolo, id: :pin_titolo %>
-  </div>
+    <div class="center">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+  <i class="material-icons right">send</i>
+</button>
+</div>
+<div class="center">
+  <%= link_to 'Indietro', pins_path, class: "waves-effect waves-teal btn-flat " %>
+</div>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :descrizione %>
-    <%= form.text_area :descrizione, id: :pin_descrizione %>
   </div>
-
-  <div class="field">
-      <%= form.label :cover %>
-      <%= form.file_field :cover%>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+</div>
